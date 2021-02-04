@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#337"
+    android:padding="20dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <TextView
+        android:id="@+id/txt_user_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:drawablePadding="8dp"
+        android:text="Alberta1"
+        android:textStyle="bold"
+        app:drawableStartCompat="@drawable/ic_person"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/txt_user_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_user_id"
+        android:drawablePadding="8dp"
+        android:text="25512341234"
+        android:textStyle="bold"
+        app:drawableStartCompat="@drawable/ic_phone"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/button_call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/txt_user_id"
+        android:layout_alignBottom="@id/txt_user_phone"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="#55A"
+        android:text="@string/call"
+        app:icon="@drawable/ic_voice" />
+
+</RelativeLayout>

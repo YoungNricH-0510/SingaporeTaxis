@@ -112,7 +112,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         // 2. Insert user to DB
         boolean isMale = (genderButtonId == R.id.btn_male);
-        User user = new User(id, password, phone, isMale);
+        User user = new User(id, password, phone, isMale, false, null);
         SQLiteHelper.getInstance(this).addUser(user);
 
         // Show success message

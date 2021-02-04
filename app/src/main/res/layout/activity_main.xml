@@ -38,12 +38,12 @@
         <!-- ID Edit -->
         <EditText
             android:id="@+id/edit_id"
-            android:text="test"
+            android:text="tester"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:autofillHints="@string/id"
-            android:drawableStart="@drawable/ic_person"
+            android:drawableStart="@drawable/ic_user"
             android:drawablePadding="8dp"
             android:hint="@string/id"
             android:inputType="text" />
@@ -95,7 +95,6 @@
     </LinearLayout>
 
 </FrameLayout>
-
 
 
 

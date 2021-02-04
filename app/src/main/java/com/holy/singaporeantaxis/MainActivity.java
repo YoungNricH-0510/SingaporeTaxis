@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,9 @@ import android.widget.Toast;
 
 import com.holy.singaporeantaxis.helpers.SQLiteHelper;
 import com.holy.singaporeantaxis.models.User;
+
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,6 +41,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView signUpText = findViewById(R.id.txt_sign_up);
         signInButton.setOnClickListener(this);
         signUpText.setOnClickListener(this);
+
+        ZonedDateTime dateTime = ZonedDateTime.now();
+        Log.d("TAG", "onCreate: " + dateTime.toString());
+
     }
 
     // Process View click
@@ -65,11 +73,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean trySigningIn() {
 
         // Get signing-in information
-        String strId = mIdEdit.getText().toString().trim();
-        String strPassword = mPasswordEdit.getText().toString().trim();
+        String id = mIdEdit.getText().toString().trim();
+        String password = mPasswordEdit.getText().toString().trim();
 
         // No empty field allowed
-        if (strId.isEmpty() || strPassword.isEmpty()) {
+        if (id.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -77,20 +85,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Process signing in using SQLite Database
 
         // 1. Check if there is an corresponding id
-        User user = SQLiteHelper.getInstance(this).getUser(strId);
+        User user = SQLiteHelper.getInstance(this).getUser(id);
         if (user == null) {
             Toast.makeText(this, "ID does not exist", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         // 2. Check if the password entered matches with the real one
-        if (!strPassword.equals(user.getPassword())) {
+        if (!password.equals(user.getPassword())) {
             Toast.makeText(this, "Password does not match", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        // 2. Set current id of app
-        ((App)getApplication()).setCurrentId(strId);
+        // 3. Process signing in
+        // - Update singed state of the user
+        SQLiteHelper.getInstance(this).updateUserSignedState(id, true);
+        // - Set current id of application
+        ((App)getApplication()).setCurrentId(id);
 
         return true;
     }

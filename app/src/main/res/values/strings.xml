@@ -10,4 +10,8 @@
     <string name="already_signed_up">Already signed up?</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+    <string name="call">Call</string>
+    <string name="calculate">Calculate</string>
+    <string name="settings">Settings</string>
+    <string name="search_user">Search User</string>
 </resources>
